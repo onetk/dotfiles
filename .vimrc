@@ -47,7 +47,7 @@ nnoremap k gk
 
 " Tab系
 " 不可視文字を可視化(タブが「-」と表示される)
-set list listchars=tab:\\-
+" set list listchars=tab:\\-
 " 全角スペース表示
 augroup highlightIdegraphicSpace
   autocmd!
@@ -92,7 +92,8 @@ nnoremap <down> gj
 nnoremap <up> gk
 " バックスペースキーの有効化
 set backspace=indent,eol,start
-set showmatch " 括弧の対応関係を一瞬表示する
+"  括弧の対応関係を一瞬表示する
+set showmatch
 " コマンドモードの補完
 set wildmenu
 " 保存するコマンド履歴の数
@@ -117,5 +118,16 @@ for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
     exec "imap " . k . " " . k . "<C-N><C-P>"
 endfor
 imap <expr> <TAB> pumvisible() ? "\<Down>" : "\<Tab>"
+
+" 括弧補完関連
+inoremap { {}<Left>
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap ( ()<ESC>i
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
+
+inoremap " ""<Left>
+inoremap ' ''<Left>
+inoremap < <><Left>
+
 
 
